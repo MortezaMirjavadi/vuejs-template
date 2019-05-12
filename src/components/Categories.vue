@@ -2,7 +2,6 @@
     <div class="category list-group mt-3 text-left">
         <button class="list-group-item list-group-item-action cursor-pointer"
             v-for="category in categories">
-
             {{ category.catname }}
         </button>
         <!--<ul class="list-group list-group-flush border-bottom">-->

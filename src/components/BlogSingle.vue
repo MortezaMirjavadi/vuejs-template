@@ -1,8 +1,9 @@
 <template>
     <div class="BlogSingle text-left">
-        <h1> Duplex home purchase for future </h1>
-        <small> By: Jogn Doe, Date: 22 April 2018</small>
-        <img src="https://picsum.photos/id/844/765/400" class="mt-3 img-responsive">
+        <h1> {{ singlePost.title }} </h1>
+        <small> By: {{ singlePost.author.username }}, Date: {{ singlePost.createdAt }}</small>
+        <!--style="width: 765px; height: 400px;"-->
+        <img class="mt-3 img-responsive" :src="singlePost.image">
         <p class="mt-3">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below
             for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by
             Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914
@@ -19,13 +20,17 @@
         </p>
 
         <div class="media mt-3 ml-4">
-            <div id="bar"></div>
-            <div class="media-body" style="margin-left: 10px;">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing.
+            <div class="media-body" itemprop="articleSection">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and
+                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap
+                    into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                    the
+                    release of Letraset sheets containing.
+                </p>
             </div>
         </div>
         <p class="mt-3">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below
@@ -37,7 +42,7 @@
             <li class="media">
                 <img src="https://picsum.photos/id/250/180/180" class="align-self-center mr-3">
                 <div class="media-body">
-                    <h5 class="mt-0">MDonal Smith</h5>
+                    <h5 class="mt-0"> {{ singlePost.author.username }} </h5>
                     <small class="text-muted"> Post Editor</small>
                     <p class="mt-3">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                         incididunt ut
@@ -55,13 +60,13 @@
 
 <script>
     import Comment from "./Comment";
+    import {mapGetters} from "vuex";
 
     export default {
-        data() {
-            return {
-                widthImage: 765,
-                heightImage: 400
-            }
+        computed: {
+            ...mapGetters([
+                'singlePost'
+            ])
         },
         components: {
             'blog-comment': Comment
@@ -76,20 +81,27 @@
         padding: 20px;
     }
 
-    #bar {
-        background-image: linear-gradient(to bottom right, rgb(194, 103, 210), rgb(63, 41, 171));
-        width: 5px;
-        height: 90px;
+    div[itemprop="articleSection"] > p:first-of-type {
+        margin-bottom: 1em;
+        margin-top: 1.9em;
+        border-left: 4px solid rgb(194, 103, 210);
+        padding-left: .8em;
+        text-align: justify;
     }
 
     @media screen and (min-width: 1180px) {
         .img-responsive {
-            width: 100%;
+            width: 765px;
+            height: 400px;
+            /*width: 100%;*/
         }
     }
+
     @media screen and (max-width: 1180px) {
         .img-responsive {
-            width: 90%;
+            width: 500px;
+            height: 300px;
+            /*width: 90%;*/
         }
     }
 

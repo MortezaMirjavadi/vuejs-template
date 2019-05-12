@@ -3,11 +3,12 @@
         <div class="card-columns">
             <div class="card shadow-lg p-3 mb-5 bg-white rounded cursor-pointer"
                  style="height: 433px;"
+                 @click="displayPost(article)"
                  v-for="article in articles">
                 <img :src="article.image" class="card-img-top">
                 <div class="card-body text-left">
                     <h6 class="card-title"> {{ article.title }} </h6>
-                    <small class="card-subtitle mb-2 text-muted"> {{ article.updatedAt }} </small>
+                    <small class="card-subtitle mb-2 text-muted"> {{ article.updatedAt }}</small>
                     <p class="card-text">
                         {{article.description}}
                     </p>
@@ -21,15 +22,22 @@
 
 <script>
     import PaginationCustom from "./PaginationCustom";
-    import {mapGetters} from "vuex" ;
+    import {mapGetters, mapMutations} from "vuex" ;
 
     export default {
+        props: {
+            displayPost: Function
+        },
         computed: {
             ...mapGetters([
                 'articles'
+            ]),
+            ...mapMutations([
+                'selectPost'
             ])
         },
-        methods: {},
+        methods: {
+        },
         components: {
             "items-pagination": PaginationCustom,
         }

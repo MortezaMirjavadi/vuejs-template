@@ -2,7 +2,7 @@
     <div class="container maincontent">
         <div class="row justify-content-md-center">
             <div class="col col-md-9">
-                <category-items v-if="!showPost"></category-items>
+                <category-items v-if="!showPost" :displayPost="displayPost"></category-items>
                 <blog-single v-else></blog-single>
             </div>
             <div class="col col-md-3">
@@ -27,7 +27,8 @@
     import Posts from "./Posts";
     import PaginationCustom from "./PaginationCustom";
     import BlogSingle from "./BlogSingle";
-    import {mapActions} from "vuex";
+    import {mapActions, mapMutations} from "vuex";
+    import {EventBus} from "../main";
 
     export default {
         data() {
@@ -39,9 +40,17 @@
             ...mapActions({
                 asyncGetArticles: 'asyncGetArticles'
             }),
-            displayPost() {
-                this.showPost = !this.showPost;
+            ...mapMutations({
+                selectPost: 'selectPost'
+            }),
+            displayPost(post) {
+                this.selectPost(post);
+                this.showPost = true;
+
             },
+            toggleSingleBlogAndItemsHandler(data) {
+                this.showPost = data;
+            }
         },
         components: {
             "category-items": Items,
@@ -53,6 +62,11 @@
         mounted() {
             this.$store.dispatch('asyncGetArticles');
             this.$store.dispatch('asyncGetCats');
+
+            EventBus.$on('toggleSingleBlogAndItems', this.toggleSingleBlogAndItemsHandler);
+        },
+        destroyed() {
+            EventBus.$off('toggleSingleBlogAndItems', this.toggleSingleBlogAndItemsHandler);
         }
     }
 </script>

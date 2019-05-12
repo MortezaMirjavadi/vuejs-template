@@ -1,7 +1,9 @@
 <template>
     <div class="posts">
         <ul class="list-unstyled text-left">
-            <app-post :displayPost="displayPost" v-for="post in latestPosts" :post="post">
+            <app-post :displayPost="displayPost"
+                      v-for="post in latestPosts"
+                      :post="post">
 
             </app-post>
         </ul>

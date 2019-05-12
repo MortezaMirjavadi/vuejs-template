@@ -44,6 +44,7 @@
                 'asyncGetSpecificPage'
             ]),
             getSpecificPage(value, moveType) {
+                window.scrollTo(0,0);
                 this.asyncGetSpecificPage({value, moveType});
             }
         }

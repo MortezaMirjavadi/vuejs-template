@@ -1,5 +1,5 @@
 <template>
-    <div class="post mt-2" @click="displayPost">
+    <div class="post mt-2" @click="displayPost(post)">
         <li class="media">
             <!--<img src="https://picsum.photos/id/835/72/72" class="align-self-center mr-3">-->
             <img :src="post.image" style="width: 72px; height:72px" class="align-self-center mr-3">

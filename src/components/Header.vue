@@ -21,14 +21,14 @@
                 <button type="button" class="btn btn-primary" @click="createAccount"> Create Account</button>
             </li>
             <!--<li class="nav-item ml-5">-->
-                <!--<div class="dropdown">-->
-                    <!--<i class="fa fa-heart" data-toggle="dropdown"></i>-->
-                    <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-                        <!--<a class="dropdown-item" href="#">Action</a>-->
-                        <!--<a class="dropdown-item" href="#">Another action</a>-->
-                        <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                    <!--</div>-->
-                <!--</div>-->
+            <!--<div class="dropdown">-->
+            <!--<i class="fa fa-heart" data-toggle="dropdown"></i>-->
+            <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <!--<a class="dropdown-item" href="#">Another action</a>-->
+            <!--<a class="dropdown-item" href="#">Something else here</a>-->
+            <!--</div>-->
+            <!--</div>-->
             <!--</li>-->
         </ul>
         <!--<div class="dropdown">-->
@@ -50,6 +50,8 @@
 
 <script>
 
+    import {EventBus} from "../main";
+
     export default {
         data() {
             return {
@@ -65,6 +67,7 @@
             },
             gotoHome() {
                 this.$router.push('/');
+                this.emitGlobalClickEvent();
             },
             handleScroll(event) {
                 if (window.scrollY >= 350) {
@@ -78,6 +81,9 @@
                     }
                 }
                 this.oldScrollY = window.scrollY;
+            },
+            emitGlobalClickEvent() {
+                EventBus.$emit("toggleSingleBlogAndItems", false);
             }
         },
         mounted() {
