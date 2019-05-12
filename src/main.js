@@ -14,6 +14,8 @@ Vue.config.productionTip = false;
 Vue.use(VueResource);
 Vue.http.options.root = "http://localhost:3000/api";
 
+export const EventBus = new Vue();
+
 new Vue({
   router,
   store,
