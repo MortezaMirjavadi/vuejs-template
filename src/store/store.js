@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         articles: [],
         categories: [],
+        singlePost: null,
 
         pageSize: 5,
         activePage: 1,
@@ -16,6 +17,9 @@ export default new Vuex.Store({
         pagesAvailable: null
     },
     getters: {
+        singlePost: state => {
+            return state.singlePost;
+        },
         latestPosts: state => {
             return state.articles[0];
         },
@@ -39,6 +43,9 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        selectPost: (state, payload) => {
+            state.singlePost = payload;
+        },
         createArticle: (state, payload) => {
             state.articles.push(payload);
         },
@@ -48,7 +55,8 @@ export default new Vuex.Store({
             // state.articles.splice(index, 1, payload)
         },
         setCategories: (state, payload) => {
-            state.categories = [...state.categories, ...payload];
+            state.categories = payload;
+            // state.categories = [...state.categories, ...payload];
         },
         setArticlesCount: (state, payload) => {
             state.pageCount = Math.ceil(payload / state.pageSize);
