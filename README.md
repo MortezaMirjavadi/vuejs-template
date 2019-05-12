@@ -1,4 +1,4 @@
-# arvancloudchallenge
+# Arvan Cloud Challenge
 
 ## Project setup
 ```
