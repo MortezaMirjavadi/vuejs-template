@@ -1,14 +1,14 @@
 const state = {
-    articles: [{title: "Test1"}, {title: "Test2"}],
+    posts: [{title: "Test1"}, {title: "Test2"}],
 };
 const getters = {
-    articles: state => {
-        return state.articles;
+    posts: state => {
+        return state.posts;
     }
 };
 const mutations = {
     createArticle: (state, payload) => {
-        state.articles.push(payload);
+        state.posts.push(payload);
     },
     getArticles: (state, payload) => {
         state.articles = payload;
@@ -16,7 +16,7 @@ const mutations = {
 };
 const actions = {
     asyncCreateArticle: ({commit}, payload) => {
-        Vue.http.post('http://localhost:3000/api/articles').then(response => {
+        Vue.http.post('http://localhost:3000/api/posts').then(response => {
             commit('createArticle', response.body)
         });
     },

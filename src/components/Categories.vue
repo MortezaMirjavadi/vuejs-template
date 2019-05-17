@@ -1,7 +1,8 @@
 <template>
     <div class="category list-group mt-3 text-left">
         <button class="list-group-item list-group-item-action cursor-pointer"
-            v-for="category in categories">
+                @click="emitGlobalClickEvent(category)"
+                v-for="category in categories">
             {{ category.catname }}
         </button>
         <!--<ul class="list-group list-group-flush border-bottom">-->
@@ -15,7 +16,8 @@
 </template>
 
 <script>
-    import {mapGetters} from "vuex";
+    import {mapGetters, mapMutations} from "vuex";
+    import {EventBus} from "../main";
 
     export default {
         computed: {
@@ -23,6 +25,15 @@
                 'categories'
             ])
         },
+        methods: {
+            ...mapMutations([
+                'changeCategory'
+            ]),
+            emitGlobalClickEvent(category) {
+                this.changeCategory(category);
+                EventBus.$emit("toggleSingleBlogAndItems", false);
+            }
+        }
 
     }
 </script>

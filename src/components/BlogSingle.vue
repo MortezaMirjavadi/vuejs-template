@@ -53,7 +53,7 @@
         </div>
 
 
-        <blog-comment></blog-comment>
+        <blog-comment :postid="singlePost.id"></blog-comment>
 
     </div>
 </template>

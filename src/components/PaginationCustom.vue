@@ -1,5 +1,5 @@
 <template>
-    <div class="borderless">
+    <div class="borderless container">
         <ul class="list-group list-group-horizontal list-group-flush">
             <li class="list-group-item" style="border: none;">
                 <button type="button" class="btn btn-primary"
@@ -33,7 +33,7 @@
     export default {
         computed: {
             ...mapGetters([
-                'articlesCount',
+                'postCount',
                 'activePage',
                 'pageCount',
                 'pagesAvailable'
@@ -41,11 +41,13 @@
         },
         methods: {
             ...mapActions([
-                'asyncGetSpecificPage'
+                'asyncGetSpecificPage',
+                'syncGetSpecificPage'
             ]),
             getSpecificPage(value, moveType) {
                 window.scrollTo(0,0);
-                this.asyncGetSpecificPage({value, moveType});
+                this.syncGetSpecificPage({value, moveType});
+                // this.asyncGetSpecificPage({value, moveType});
             }
         }
     }
