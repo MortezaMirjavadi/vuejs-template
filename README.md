@@ -1,4 +1,4 @@
-# Arvan Cloud Challenge
+# Vuejs Challenge
 
 ## Project setup
 ```
